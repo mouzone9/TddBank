@@ -23,9 +23,20 @@ describe('Account', () => {
         })
         it('Should return account balance after getting money', () => {
             account.getMoney(500)
-            expect(account.amount()).toBe(500)
+            account.getMoney(250)
+            expect(account.amount()).toBe(250)
+            account.getMoney(250)
+            expect(account.amount()).toBe(0)
         })
     })
+    
+    describe('takeLoan', ()=>{
+        it('should return the monthly payment', ()=> {
+            account.takeLoan(1000)
+            expect(account.amount(0)).toBe(-1000)
+        })
+    })
+})
 
     describe('history of operation', () => {
         it('Should return account history operation add', () => {

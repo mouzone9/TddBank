@@ -6,7 +6,7 @@ export class Account{
         this.currentCurrency = currentCurrency;
     }
 
-    amount() {
+    amount(){
         return this.balances;
     }
 
@@ -14,6 +14,7 @@ export class Account{
         this.balances += n
         this.history.push(n.toString())
     }
+
 
     getMoney(n: number) {
         if (this.balances < n) throw 'You don\'t have enough money, get a job'
@@ -24,6 +25,7 @@ export class Account{
     historyOperation() {
         return this.history
     }
+ 
     changeCurrency(currency:string){
         switch(currency){
             case 'dollar':
@@ -37,5 +39,9 @@ export class Account{
                 }
                 this.balances *=1.1
         }
+    }
+
+    takeLoan(n:number){
+        return this.balances = (- n);
     }
 }
