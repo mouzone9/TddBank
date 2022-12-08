@@ -2,18 +2,14 @@ export class Account{
     constructor(private balances:number) {
         this.balances = balances;
     }
-
-    balance(){
+    amount(){
         return this.balances;
     }
-
-    addMoney =(n:number): number => {
+    addMoney(n:number){
         this.balances += n
-        return this.balances
     }
-
-    getMoney=(n:number): number=>{
+    getMoney(n:number){
+        if(this.balances<n) throw 'You don\'t have enough money, get a job'
         this.balances -= n
-        return this.balances
     }
 }

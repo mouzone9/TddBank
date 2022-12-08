@@ -1,26 +1,43 @@
 import {Account} from "./bank";
+var account;
 
-var account = new Account(100);
+beforeEach(()=>{
+    account = new Account(1000);
+})
 
 describe('Account',()=>{
-
     describe('getBalance',  ()=>{
         it('Return balance account',()=>{
-            expect(account.balance()).toBe(100)
+            expect(account.amount()).toBe(1000)
         })
     })
-
     describe('addMoney',  ()=>{
-        it('Should return account balance after test',()=>{
-            expect(account.addMoney(10)).toBe(110)
+        it('Should return account balance after adding money',()=>{
+            account.addMoney(10)
+            expect(account.amount()).toBe(1010)
+        })
+    })
+    describe('getMoney',  ()=>{
+        it('should return not enough money',()=>{
+            expect(() => account.getMoney(5000)).toThrow('You don\'t have enough money, get a job')
+        })
+        it('Should return account balance after getting money',()=>{
+            account.getMoney(500)
+            expect(account.amount()).toBe(500)
         })
     })
 
-    describe('getMoney',  ()=>{
-        it('should return true',()=>{
-            expect(account.getMoney(5)).toBe(105)
-        })
-    })
+
+
+
+    // describe('multipleOperation',  ()=>{
+    //     it('Return balance account',()=>{
+    //         const account2 = new Account(1000)
+    //         account2.addMoney(200)
+    //         account2.getMoney(100)
+    //         expect(account2.amount()).toBe(1100)
+    //     })
+    // })
 
 
 })
