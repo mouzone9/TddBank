@@ -23,21 +23,16 @@ describe('Account',()=>{
         })
         it('Should return account balance after getting money',()=>{
             account.getMoney(500)
-            expect(account.amount()).toBe(500)
+            account.getMoney(250)
+            expect(account.amount()).toBe(250)
+            account.getMoney(250)
+            expect(account.amount()).toBe(0)
         })
     })
-
-
-
-
-    // describe('multipleOperation',  ()=>{
-    //     it('Return balance account',()=>{
-    //         const account2 = new Account(1000)
-    //         account2.addMoney(200)
-    //         account2.getMoney(100)
-    //         expect(account2.amount()).toBe(1100)
-    //     })
-    // })
-
-
+    describe('takeLoan', ()=>{
+        it('should return the monthly payment', ()=> {
+            account.takeLoan(1000)
+            expect(account.amount(0)).toBe(-1000)
+        })
+    })
 })
