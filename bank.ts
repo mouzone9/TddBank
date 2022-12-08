@@ -1,18 +1,19 @@
-
 export class Account{
-    constructor() {
-        this.balance = 0;
+    constructor(private balances:number) {
+        this.balances = balances;
     }
 
     balance(){
-        return this.balance;
+        return this.balances;
     }
 
     addMoney =(n:number): number => {
-        return 0
+        this.balances += n
+        return this.balances
     }
 
     getMoney=(n:number): number=>{
-        return 0
+        this.balances -= n
+        return this.balances
     }
 }
