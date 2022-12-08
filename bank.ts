@@ -1,8 +1,9 @@
 
-export class Account {
-    constructor(private balances: number, private history: Array<string> = []) {
+export class Account{
+    constructor(private balances:number, private currentCurrency:string,private history: Array<string> = []) {
         this.balances = balances;
         this.history = history;
+        this.currentCurrency = currentCurrency;
     }
 
     amount() {
@@ -22,5 +23,19 @@ export class Account {
 
     historyOperation() {
         return this.history
+    }
+    changeCurrency(currency:string){
+        switch(currency){
+            case 'dollar':
+                if (this.currentCurrency == 'dollar'){
+                    break;
+                }
+                this.balances *=0.9
+            case 'euro':
+                if (this.currentCurrency == 'euro'){
+                    break;
+                }
+                this.balances *=1.1
+        }
     }
 }

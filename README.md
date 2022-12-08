@@ -1,10 +1,10 @@
 # Bank 
 
-- Retirer de l'argent
-- Déposer de l'argent
-- Consulter son solde
-- Faire un virement
-- Consulter l'historique des opérations
+- Retirer de l'argent ✅
+- Déposer de l'argent ✅
+- Consulter son solde ✅
+- Faire un virement 
+- Consulter l'historique des opérations ✅
 - Faire un emprunt
 - Gerer les devise
 - Ouvrir un compte
