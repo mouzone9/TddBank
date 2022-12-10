@@ -79,6 +79,13 @@ export class Bank{
         return this.accounts
     }
 
+    
+    modifyAccount(n:number, devise:string){
+        const account = new Account(n, devise)
+        this.accounts.push(account);
+        return this.accounts
+    }
+
     removeAccount(account:Account){
         this.accounts = this.accounts.filter((acc)=>acc != account)
     }
@@ -88,3 +95,4 @@ export class Bank{
         account2.addMoney(amount)
     }
 }
+

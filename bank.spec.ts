@@ -1,5 +1,6 @@
 import { Account, Bank } from "./bank";
 var account;
+var modifyAccount
 var bank;
 
 beforeEach(() => {
@@ -118,5 +119,10 @@ describe('Bank',()=>{
         bank.wireTransfer(account,account2,100)
         expect(account.amount()).toBe(900)
         expect(account2.amount()).toBe(1100)
+    })
+
+    it('should return a modify account',()=>{
+        const bank = new Bank()
+        expect(bank.modifyAccount(10000, "dollars")).not.toBe(account)
     })
 })
