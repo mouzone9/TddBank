@@ -1,7 +1,9 @@
-import { Account } from "./bank";
+import { Account, Bank } from "./bank";
 var account;
+var bank;
 
-
+beforeEach(() => {
+    account = new Account(1000, 'euro');
 })
 
 describe('Account', () => {
@@ -36,7 +38,7 @@ describe('Account', () => {
             expect(account.amount(0)).toBe(-1000)
         })
     })
-})
+
 
     describe('history of operation', () => {
         it('Should return account history operation add', () => {
@@ -69,4 +71,52 @@ describe('Account', () => {
     })
 
 
+describe('Beneficiary',()=>{
+    it('should return list of beneficiary',()=>{
+        const account2 = new Account(1000,'dollar')
+        expect(account2.returnBeneficiary()).toEqual([])
+    })
+    it('should add beneficiary',()=>{
+        const account2 = new Account(1000,'dollar')
+        account2.addBeneficiary('Bob')
+        expect(account2.returnBeneficiary()).toEqual(['Bob'])
+    })
+    it('should remove beneficiary',()=>{
+        const account2 = new Account(1000,'dollar')
+        account2.addBeneficiary('Bob')
+        account2.removeBeneficiary('Bob')
+        expect(account2.returnBeneficiary()).toEqual([])
+    })
+})
+})
+
+describe('Bank',()=>{
+    it('should return account if account exist after creating one',()=>{
+        const bank = new Bank()
+        bank.addAccount(account)
+        expect(bank.getAccount(account)).toBe(account)
+    })
+
+    it('should return all account',()=>{
+        const bank = new Bank()
+        bank.addAccount(account)
+        expect(bank.getAccounts()).toEqual([account])
+    })
+
+    it('should return all account after adding one and removing one',()=>{
+        const bank = new Bank()
+        bank.addAccount(account)
+        bank.removeAccount(account)
+        expect(bank.getAccounts()).toEqual([])
+    })
+
+    it('should return ammount of account after wire transfer',()=>{
+        const bank = new Bank()
+        const account2 = new Account(1000,'dollar')
+        bank.addAccount(account)
+        bank.addAccount(account2)
+        bank.wireTransfer(account,account2,100)
+        expect(account.amount()).toBe(900)
+        expect(account2.amount()).toBe(1100)
+    })
 })
