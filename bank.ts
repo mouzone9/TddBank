@@ -80,10 +80,10 @@ export class Bank{
     }
 
     
-    modifyAccount(n:number, devise:string){
-        const account = new Account(n, devise)
+    modifyAccount(n:number, devise:string, account:Account){
+        this.accounts.splice(this.accounts.indexOf(account),1)
+        account = new Account(n, devise)
         this.accounts.push(account);
-        return this.accounts
     }
 
     removeAccount(account:Account){

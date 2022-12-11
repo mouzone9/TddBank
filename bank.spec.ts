@@ -53,6 +53,12 @@ describe('Account', () => {
             account.getMoney(20)
             expect(account.historyOperation()).toEqual(['-10', '-20'])
         })
+
+        it('Should return account history operation', () => {
+            account.getMoney(10)
+            account.addMoney(20)
+            expect(account.historyOperation()).toEqual(['-10', '20'])
+        })
     })
 
     
@@ -106,9 +112,11 @@ describe('Bank',()=>{
 
     it('should return all account after adding one and removing one',()=>{
         const bank = new Bank()
+        const account2 = new Account(1000,'dollar')
         bank.addAccount(account)
+        bank.addAccount(account2)
         bank.removeAccount(account)
-        expect(bank.getAccounts()).toEqual([])
+        expect(bank.getAccounts()).toEqual([account2])
     })
 
     it('should return ammount of account after wire transfer',()=>{
@@ -123,6 +131,8 @@ describe('Bank',()=>{
 
     it('should return a modify account',()=>{
         const bank = new Bank()
-        expect(bank.modifyAccount(10000, "dollars")).not.toBe(account)
+        bank.addAccount(account)
+        bank.modifyAccount(10000, "dollars",account)
+        expect(bank.getAccounts()).not.toBe([account])
     })
 })
